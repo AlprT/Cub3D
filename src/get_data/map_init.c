@@ -6,7 +6,7 @@
 /*   By: atangil <atangil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:28:28 by atangil           #+#    #+#             */
-/*   Updated: 2024/07/23 20:24:03 by atangil          ###   ########.fr       */
+/*   Updated: 2024/07/27 18:38:02 by atangil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*read_map(char *map_path)
 	return (close(fd), join);
 }
 
-void	get_data(char **map, t_game *game, int i)
+int	get_data(char **map, t_game *game, int i)
 {
 	check_copies(map);
 
@@ -56,40 +56,40 @@ void	get_data(char **map, t_game *game, int i)
 	else if (!ft_strncmp(skip_spaces(map[i]), "C", 1))
 		game->c_color = skip_spaces(skip_spaces(map[i]) + 1);
 	else
-		ft_err("Error\nInvalid map\n");
+		ft_err("Error\nInvalid map1\n");
+	return (1);
 }
 
-void	get_map(char *map_path, t_game *game)
+char	**get_map(char *map_path, t_game *game)
 {
 	char	**map;
 	int		i;
+	int		flag;
 
 	i = 0;
 	(void)game;
 	map = ft_split(read_map(map_path), '\n');
-	if (!map)
-		ft_err("Error\nMap could not be read\n");
-	while (ft_strncmp(map[i], "1", 1))
-		i++;
-	game->map = map + i;
+	flag = 0;
 	i = 0;
-	while (map[i] && (map[i][0] != '1' || map[i][0] == '0'))
+	while ((map[i][0] != '1' || map[i][0] == '0') && flag != 6)
 	{
-		get_data(map, game, i);
+		flag += get_data(map, game, i);
 		i++;
 	}
+	game -> map = map + i;
 	if (!game->no_texture_path || !game->so_texture_path
 		|| !game->we_texture_path || !game->ea_texture_path
 		|| !game->f_color || !game->c_color)
 		ft_err("Error\nInvalid map\n");
+	check_chars(game, game->map);
+	return (map + i);
 }
 
 char	**map_init(char *map_path, t_game *game)
 {
 	if (!is_cub(map_path))
 		ft_err("Error\nInvalid file extention\n");
-	get_map(map_path, game);
-	fill_n_check(game->map);
+	check_walls(get_map(map_path, game));
 	test_print(game);//temp
 	return (0);
 }

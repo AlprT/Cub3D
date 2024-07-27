@@ -7,7 +7,9 @@ SRC = ./src/main.c \
 	./src/get_data/map_init.c \
 	./src/game_core/game.c \
 	./src/utils/utils_1.c \
-	./src/get_data/check_copies.c 
+	./src/get_data/check_copies.c \
+	./src/get_data/check_walls.c \
+	./src/get_data/check_chars.c 
 
 OBJ = $(SRC:.c=.o)
 

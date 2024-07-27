@@ -6,7 +6,7 @@
 /*   By: atangil <atangil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:21:37 by atangil           #+#    #+#             */
-/*   Updated: 2024/07/23 19:57:24 by atangil          ###   ########.fr       */
+/*   Updated: 2024/07/27 18:35:04 by atangil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_game
 	char	*f_color;
 	char	*c_color;
 	char	**map;
+	char	p_dir;
 	// Add more variables here for mlx and stuff
 }	t_game;
 
@@ -32,9 +33,9 @@ char	*skip_spaces(char *str);
 
 // get_data :
 char	**map_init(char *map_path, t_game *game);
-void	get_data(char **map, t_game *game, int i);
 void	check_copies(char **map);
-char	**fill_n_check(char **map);
+char	**check_chars(t_game *game, char **map);
+void	check_walls(char **map);
 
 // game_core :
 void	ft_cub3d(char **map, t_game *game);
