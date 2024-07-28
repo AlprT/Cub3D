@@ -6,11 +6,13 @@
 /*   By: atangil <atangil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 18:07:43 by atangil           #+#    #+#             */
-/*   Updated: 2024/07/27 18:41:42 by atangil          ###   ########.fr       */
+/*   Updated: 2024/07/28 18:25:11 by atangil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+#include "../libft/libft.h"
+#include <stdio.h>
 
 static void	get_dir(t_game *game, int i, int j, int *flag)
 {
@@ -33,10 +35,9 @@ char	**check_chars(t_game *game, char **map)
 
 	flag = 0;
 	i = -1;
-	j = -1;
 	while (map[++i])
 	{
-		j = 0;
+		j = -1;
 		while (map[i][++j]) 
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' ||

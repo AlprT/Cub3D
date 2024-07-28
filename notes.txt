@@ -1,0 +1,4 @@
+
+Haritaya sınır koyulcak
+
+C F, için 0-255 arası sınır koy
