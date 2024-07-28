@@ -6,13 +6,11 @@
 /*   By: atangil <atangil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 17:27:59 by atangil           #+#    #+#             */
-/*   Updated: 2024/07/28 18:20:09 by atangil          ###   ########.fr       */
+/*   Updated: 2024/07/28 18:28:16 by atangil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-#include "../libft/libft.h"
-#include <stdio.h>
 
 static void	get_map_len(char **map, int *maxl)
 {
